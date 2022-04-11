@@ -34,6 +34,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login_email_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"/>
@@ -53,6 +54,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login_password_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"/>
