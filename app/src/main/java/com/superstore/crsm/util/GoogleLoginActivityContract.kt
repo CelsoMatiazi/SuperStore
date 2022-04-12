@@ -27,7 +27,7 @@ class GoogleLogInActivityContract  : ActivityResultContract<
             Result.Success(completedTask.result)
         } catch (exception: Exception) {
             (exception  as? ApiException)?.let {
-                Log.w("GOOGLE", "signInResult:failed code= ${it.statusCode}")
+                Log.w("GOOGLE", "signInResult:failed code= ${it.message}")
             }
             Result.Error(exception)
         }

@@ -27,12 +27,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private val googleSignInOptions : GoogleSignInOptions
         get() = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("186025361439-8phc1qfdo2cv961f601f8spuo5ug180f.apps.googleusercontent.com")
+            .requestIdToken("186025361439-1j5bj61tpb4238sgsl9guviomoonq077.apps.googleusercontent.com")
             .requestEmail()
             .requestProfile()
             .build()
-
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -80,6 +78,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 loginWithGoogle(token)
             }
             Toast.makeText(context, "LoginGoogle -> $token", Toast.LENGTH_LONG).show()
+        }else{
+            println("Result not Success")
         }
     }
 
