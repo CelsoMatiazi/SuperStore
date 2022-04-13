@@ -74,29 +74,32 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private fun onGoogleSignInResult(result: GoogleLogInActivityContract.Result?) {
         if(result is GoogleLogInActivityContract.Result.Success){
             val token = result.googleSignInAccount.idToken
-            if (token != null) {
-                loginWithGoogle(token)
+            token?.let {
+                loginWithGoogleFirebase(token)
             }
-            Toast.makeText(context, "LoginGoogle -> $token", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "LoginGoogle -> ${token!!.take(155)}......", Toast.LENGTH_LONG).show()
         }else{
             println("Result not Success")
         }
     }
 
 
-    private fun loginWithGoogle(token: String){
+    private fun loginWithGoogleFirebase(token: String){
         val credential = GoogleAuthProvider.getCredential(token, null)
-        auth.signInWithCredential(credential).addOnCompleteListener {
-                task: Task<AuthResult> ->
-                if(task.isSuccessful){
-                    Toast.makeText(context, "Login - Register", Toast.LENGTH_LONG).show()
+        auth.signInWithCredential(credential)
+            .addOnFailureListener{
+                println(it)
+            }
+            .addOnCompleteListener {
+                Result: Task<AuthResult> ->
+                if(Result.isSuccessful){
+                    Toast.makeText(context, "Firebase Google Login - Success", Toast.LENGTH_LONG).show()
                 }else{
-                    Toast.makeText(context, "Register - Error", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Firebase Google Login - Failed", Toast.LENGTH_LONG).show()
                 }
         }
 
     }
-
 
 
 }
